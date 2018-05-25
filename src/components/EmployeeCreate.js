@@ -26,7 +26,7 @@ class EmployeeCreate extends Component {
                     <Input
                         label="Name"
                         placeholder="Jane"
-                        oneChangeText={value => this.props.employeeUpdate({ prop: 'name', value})}
+                        onChangeText={value => this.props.employeeUpdate({ prop: 'name', value})}
                         value={this.props.name}
                     />
                 </CardSection>
@@ -45,7 +45,7 @@ class EmployeeCreate extends Component {
                     <Text style={styles.pickerLabelStyle}>Shift</Text>
                     <Picker
                         onValueChange={value => this.props.employeeUpdate({ prop: 'shift', value})}
-                        selectValue={this.props.shift}
+                        selectedValue={this.props.shift}
                     >
                         {this.renderPickerOptions()}
                     </Picker>
