@@ -26,6 +26,10 @@ class App extends Component {
             </Provider>
         );
     }
+
+    componentWillUnmount(){
+
+    }
 }
 
 export default App;
