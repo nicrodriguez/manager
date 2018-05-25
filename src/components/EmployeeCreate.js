@@ -4,30 +4,46 @@ import { connect } from 'react-redux';
 import { employeeUpdate, employeeCreate } from "../actions";
 import { Card, CardSection, Input, Button } from "./common";
 
+const PickerDays = [
+    { label: 'Monday', value: 'Monday'},
+    { label: 'Tuesday', value: 'Tuesday'},
+    { label: 'Wednesday', value: 'Wednesday'},
+    { label: 'Thursday', value: 'Thursday'},
+    { label: 'Friday', value: 'Friday'},
+    { label: 'Saturday', value: 'Saturday'},
+    { label: 'Sunday', value: 'Sunday'}];
 
 class EmployeeCreate extends Component {
+
+    componentWillMount() {
+        this.props.employeeUpdate({ prop: 'shift', value: PickerDays[0].value });
+    }
 
     onButtonPress() {
         const { name, phone, shift } = this.props;
         this.props.employeeCreate({ name, phone, shift: shift || 'Monday' });
     }
 
+
+
     renderPickerOptions() {
-        const weekDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
-        return weekDays.map(day => {
-            return <Picker.Item key={day} label={day} value={day} />;
+       // const weekDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+        return PickerDays.map(day => {
+            return <Picker.Item key={day.label} label={day.label} value={day.value} />;
         });
     }
 
     render() {
+
+        const { name, phone } = this.props;
         return (
             <Card>
                 <CardSection>
                     <Input
                         label="Name"
                         placeholder="Jane"
-                        oneChangeText={value => this.props.employeeUpdate({ prop: 'name', value})}
-                        value={this.props.name}
+                        value={name}
+                        onChangeText={value => this.props.employeeUpdate({ prop: 'name', value })}
                     />
                 </CardSection>
 
@@ -36,7 +52,7 @@ class EmployeeCreate extends Component {
                         label="Phone"
                         placeholder="555-555-5555"
                         onChangeText={value => this.props.employeeUpdate({ prop: 'phone', value })}
-                        value={this.props.value}
+                        value={phone}
                     />
 
                 </CardSection>
@@ -44,8 +60,8 @@ class EmployeeCreate extends Component {
                 <CardSection style={{ flexDirection: 'column' }}>
                     <Text style={styles.pickerLabelStyle}>Shift</Text>
                     <Picker
+                        selectedValue={this.props.shift}
                         onValueChange={value => this.props.employeeUpdate({ prop: 'shift', value})}
-                        selectValue={this.props.shift}
                     >
                         {this.renderPickerOptions()}
                     </Picker>
