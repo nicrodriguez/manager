@@ -42,8 +42,13 @@ class EmployeeCreate extends Component {
                     <Input
                         label="Name"
                         placeholder="Jane"
+<<<<<<< HEAD
                         value={name}
                         onChangeText={value => this.props.employeeUpdate({ prop: 'name', value })}
+=======
+                        onChangeText={value => this.props.employeeUpdate({ prop: 'name', value})}
+                        value={this.props.name}
+>>>>>>> 3fa4e185b0b8308d24c505b556aa210d1857ea4c
                     />
                 </CardSection>
 
@@ -62,6 +67,10 @@ class EmployeeCreate extends Component {
                     <Picker
                         selectedValue={this.props.shift}
                         onValueChange={value => this.props.employeeUpdate({ prop: 'shift', value})}
+<<<<<<< HEAD
+=======
+                        selectedValue={this.props.shift}
+>>>>>>> 3fa4e185b0b8308d24c505b556aa210d1857ea4c
                     >
                         {this.renderPickerOptions()}
                     </Picker>
