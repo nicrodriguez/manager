@@ -4,6 +4,7 @@ import LoginForm from './components/LoginForm';
 import EmployeeList from './components/EmployeeList';
 import EmployeeCreate from './components/EmployeeCreate';
 import EmployeeEdit from './components/EmployeeEdit';
+import firebase from 'firebase';
 
 const RouterComponent = () => {
     return (
@@ -19,6 +20,8 @@ const RouterComponent = () => {
                         key="employeeList"
                         component={EmployeeList}
                         title="Employees"
+                        onLeft={() => logUserOut()}
+                        leftTitle="Log Out"
                         initial/>
                     <Scene key="employeeCreate" component={EmployeeCreate} title="Create Employee" />
                     <Scene key="employeeEdit" component={EmployeeEdit} title="Edit Employee" />
@@ -27,6 +30,13 @@ const RouterComponent = () => {
             </Scene>
         </Router>
     );
+};
+
+const logUserOut = () => {
+    firebase.auth().signOut()
+        .then(() => {
+            Actions.auth();
+        });
 };
 
 export default RouterComponent;
