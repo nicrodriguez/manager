@@ -3,7 +3,7 @@ import App from './src/App';
 import { YellowBox } from 'react-native';
 import _ from 'lodash';
 
-YellowBox.ignoreWarnings(['Setting a timer']);
+YellowBox.ignoreWarnings(['Setting a timer', 'Module RCTImageLoader requires', 'Warning: isMounted(...) is deprecated']);
 const _console = _.clone(console);
 console.warn = message => {
     if (message.indexOf('Setting a timer') <= -1){
