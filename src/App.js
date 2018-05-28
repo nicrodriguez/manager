@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import reducers from './reducers';
-import firebase from 'firebase';
 import ReduxThunk from 'redux-thunk';
+import firebase from 'firebase';
+import reducers from './reducers';
 import Router from './Router';
 
 class App extends Component {
@@ -19,6 +19,11 @@ class App extends Component {
         };
         firebase.initializeApp(config);
     }
+
+    componentWillUnmount() {
+
+    }
+
     render() {
         return (
             <Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))}>
@@ -27,9 +32,6 @@ class App extends Component {
         );
     }
 
-    componentWillUnmount(){
-
-    }
 }
 
 export default App;
