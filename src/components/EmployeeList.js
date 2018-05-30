@@ -8,7 +8,6 @@ import ListItem from './ListItem';
 class EmployeeList extends Component {
     componentWillMount() {
         this.props.employeesFetch();
-
         this.createDataSource(this.props);
     }
 
@@ -55,4 +54,4 @@ const mapStateToProps = state => {
     return { employees };
 };
 
-export default connect(mapStateToProps, {employeesFetch })(EmployeeList);
+export default connect(mapStateToProps, { employeesFetch })(EmployeeList);
